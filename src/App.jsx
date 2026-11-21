@@ -143,6 +143,7 @@ function App() {
   const closeMenu = () => setMenuOpen(false);
   const navItems = [
     ["The day", "#the-day"],
+    ["Attire", "#attire"],
     ["Stay", "#stay"],
     ["Explore Denver", "#explore"],
     ["FAQs", "#faqs"],
@@ -280,7 +281,7 @@ function App() {
         <section className="day-section section-pad" id="the-day">
           <div className="section-heading">
             <p className="eyebrow">
-              <span /> The details <span />
+              <img className="eyebrow-bug" src="/images/ladybug.png" alt="" />
             </p>
             <h2>
               The day of
@@ -338,6 +339,32 @@ function App() {
               We’re putting the finishing touches on the schedule. More details
               coming soon.
             </span>
+          </div>
+        </section>
+
+        <section className="attire-section section-pad" id="attire">
+          <div className="attire-copy">
+            <p className="eyebrow">
+              <img className="eyebrow-bug" src="/images/moth.png" alt="" />
+              What to wear
+              <img className="eyebrow-bug" src="/images/moth.png" alt="" />
+            </p>
+            <h1>Attire</h1>
+            <p>
+              We invite you to celebrate with us in cocktail attire. Please
+              wear your best dress, dress up, and feel comfortable for an
+              evening in the garden.
+            </p>
+          </div>
+          <div className="attire-inspiration" aria-label="Cocktail attire inspiration">
+            <img
+              src="/images/attire-inspiration-one.jpg"
+              alt="Cocktail attire inspiration featuring colorful dresses and suits"
+            />
+            <img
+              src="/images/attire-inspiration-two.jpg"
+              alt="More cocktail attire inspiration featuring dresses and suits"
+            />
           </div>
         </section>
 
