@@ -1,16 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  ArrowDown,
-  ArrowRight,
-  CalendarDays,
-  MapPin,
-  Menu,
-  X,
-  Flower2,
-  Clock3,
-  Mail,
-  ExternalLink,
-} from "lucide-react";
+import { ArrowDown, ArrowRight, Menu, X } from "lucide-react";
 
 const RSVP_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSezYCBCYcUhTpWTIDI7mlGx4uBW3DOWNSAmJ7aNA5JeBWXdrQ/viewform?usp=header";
@@ -37,52 +26,34 @@ const stays = [
   },
 ];
 
-const places = [
+const denverPlaces = [
   {
     title: "Denver Botanic Gardens",
-    note: "Our celebration’s setting is worth exploring on its own. Come early and give yourself 2–3 hours to wander the gardens.",
-    image: "/images/gardens.jpg",
-    tag: "A little wonder, close to home",
+    description:
+      "Our wedding venue is accessible for our guests for the whole day, so you can take your time to explore the gardens before the event starts. We recommend that you come early to stroll around as it takes about 2–3 hours to explore everything in here.",
+    image: "image33.jpeg",
+    href: "https://www.botanicgardens.org/",
   },
   {
     title: "Denver Museum of Nature & Science",
-    note: "A must for Trevor and all things dinosaur. Farah’s favorite part? The gift shop, of course.",
-    image: "/images/museum.jpg",
-    tag: "For the curious",
+    description:
+      "Trevor is obsessed with all things dinosaurs, so this place is a must for him. The museum is spacious and full of information about the bones found in Colorado. Farah’s favorite part of this museum is of course, the gift shop.",
+    image: "image32.jpeg",
+    href: "https://www.dmns.org/",
   },
   {
-    title: "Tattered Cover Bookstore",
-    note: "Recommended by Trevor’s dad, Tom. A snowy first visit made this cozy bookstore and café feel especially magical.",
-    image: "/images/bookstore.jpg",
-    tag: "A cozy afternoon",
+    title: "Tattered Cover Bookstore, Colfax Avenue",
+    description:
+      "This bookstore was recommended by Trevor’s father, Tom. It was snowing the first time we were here and everything felt magical. There is also a cafe in here which makes this place extra cozy!",
+    image: "image38.png",
+    href: "https://www.tatteredcover.com/pages/location-hours",
   },
   {
     title: "Denver Art Museum",
-    note: "We love visiting art museums in every city. We’re hoping to make this one part of our Denver weekend.",
-    image: "/images/art-museum.jpg",
-    tag: "A favorite kind of date",
-  },
-];
-
-const faqs = [
-  {
-    question: "How should I RSVP?",
-    answer: (
-      <>
-        Please RSVP individually using our online form by{" "}
-        <strong>April 30, 2027</strong>.
-      </>
-    ),
-  },
-  {
-    question: "Can I bring a plus one?",
-    answer:
-      "Due to venue limitations, we’re unable to accommodate guests who are not named in the invitation. Thank you for understanding.",
-  },
-  {
-    question: "What should I wear?",
-    answer:
-      "Cocktail attire. Dress up, feel comfortable, and bring your garden-party best.",
+    description:
+      "We both love visiting art museums in every city that we visit. We have yet to visit this one unfortunately, so we are hoping that we could go prior our to secret party.",
+    image: "image36.jpeg",
+    href: "https://www.denverartmuseum.org/en/",
   },
 ];
 
@@ -117,7 +88,6 @@ function Countdown() {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState(0);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
   useEffect(() => {
@@ -151,7 +121,9 @@ function App() {
 
   return (
     <>
-      <header className={`site-header${scrolledPastHero ? " is-scrolled" : ""}`}>
+      <header
+        className={`site-header${scrolledPastHero ? " is-scrolled" : ""}`}
+      >
         <a
           className="wordmark"
           href="#home"
@@ -210,28 +182,34 @@ function App() {
               src="/images/butterfly.png"
               alt="butterfly"
             />
-            <h1 >
-             Farah & Trevor
+            <h1>
+              Farah <em className="serif">&</em> Trevor
             </h1>
-            <p className="hero-subtitle">
-              invite you to a secret garden party
-            </p>
+            <p className="hero-subtitle">invite you to a secret garden party</p>
             <div className="hero-details">
               <span>June 12, 2027</span>
               <b>✳</b>
               <span>Denver, Colorado</span>
             </div>
-            <a className="hero-cta" href="#the-day">
-              Discover the day <ArrowDown size={16} />
-            </a>
           </div>
           <div className="hero-bottom-lace" aria-hidden="true" />
-          <div className="hero-side-note">
-            A little celebration, a lot of love <span>—</span> 2027
-          </div>
         </section>
 
         <section className="welcome section-pad">
+          <div className="welcome-copy">
+            <p className="welcome-text">
+              Dear friends and family, we’re so happy to share that we were
+              officially married on December 1, 2025. Now, we can’t wait to
+              celebrate with all of you.
+            </p>
+            <p className="welcome-text">
+              Join us in Denver for an evening tucked among the gardens. It
+              wouldn’t feel complete without you there.
+            </p>
+            <div className="little-flower" aria-hidden="true">
+              ✳
+            </div>
+          </div>
           <div className="welcome-photo-wrap">
             <img
               className="welcome-photo"
@@ -245,31 +223,12 @@ function App() {
               aria-hidden="true"
             />
           </div>
-          <div className="welcome-copy">
-            <p className="welcome-text">
-              Dear friends and family, we’re so happy to share that we were
-              officially married on December 1, 2025. Now, we can’t wait to
-              celebrate with all of you.
-            </p>
-            <p className="welcome-text">
-              Join us in Denver for an evening tucked among the gardens. It
-              wouldn’t feel complete without you there.
-            </p>
-            <a className="text-link" href="#the-day">
-              Come celebrate with us <ArrowRight size={16} />
-            </a>
-            <div className="little-flower" aria-hidden="true">
-              ✳
-            </div>
-          </div>
         </section>
 
         <section className="date-band" aria-label="Wedding date">
           <div className="date-band-content">
             <p className="eyebrow light-eyebrow">Save the date</p>
-            <p className="big-date">
-              June <span>12</span>, 2027
-            </p>
+            <p className="big-date">June 12, 2027</p>
             <p className="date-location">
               Saturday <i>✳</i> Denver, Colorado
             </p>
@@ -278,260 +237,201 @@ function App() {
           <img src="/images/doily.png" alt="" className="date-doily" />
         </section>
 
-        <section className="day-section section-pad" id="the-day">
-          <div className="section-heading">
-            <p className="eyebrow">
-              <img className="eyebrow-bug" src="/images/ladybug.png" alt="" />
-            </p>
-            <h2>
-              The day of
-            </h2>
-            <p>
-              A garden in the city, an evening together, and all our favorite
-              people in one place.
-            </p>
-          </div>
-          <div className="day-grid">
-            <article className="day-card day-card-primary">
-              <span className="card-ornament">01</span>
-              <CalendarDays className="card-icon" strokeWidth={1.35} />
-              <p className="card-kicker">When</p>
-              <h3>June 12, 2027</h3>
-              <p>
-                Saturday
-                <br />
-                Event schedule to come
+        <section className="deck-slide deck-rsvp" id="rsvp">
+          <img
+            className="deck-rsvp-art"
+            src="/images/deck/rsvp-doily.png"
+            alt=""
+          />
+          <a
+            href={RSVP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="deck-rsvp-link text-center"
+            aria-label="RSVP here"
+          >
+            <span>RSVP</span>
+            <em>here</em>
+          </a>
+        </section>
+
+        <section className="deck-slide deck-date-venue" id="the-day">
+          <div className="deck-content">
+            <div className="deck-date-group">
+              <img
+                className="deck-content-bug"
+                src="/images/deck/image14.png"
+                alt=""
+              />
+              <h2>Date</h2>
+              <p className="!font-serif !italic">
+                June 12<sup>th</sup> 2027
               </p>
-            </article>
-            <article className="day-card">
-              <span className="card-ornament">02</span>
-              <MapPin className="card-icon" strokeWidth={1.35} />
-              <p className="card-kicker">Where</p>
-              <h3>Woodland Mosaic</h3>
-              <p>
-                Denver Botanic Gardens
-                <br />
-                1007 York St, Denver, CO 80206
+            </div>
+            <div className="deck-venue-group">
+              <img
+                className="deck-content-bug"
+                src="/images/deck/image16.png"
+                alt=""
+              />
+              <h2>Venue</h2>
+              <p className="!font-serif !italic">
+                Woodland Mosaic, Denver Botanic Gardens, 1007 York St, Denver,
+                CO 80206, United States
               </p>
-              <a
-                className="text-link"
-                href="https://maps.google.com/?q=Denver+Botanic+Gardens+1007+York+St+Denver+CO+80206"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Find your way <ExternalLink size={14} />
-              </a>
-            </article>
-            <article className="day-card">
-              <span className="card-ornament">03</span>
-              <Flower2 className="card-icon" strokeWidth={1.35} />
-              <p className="card-kicker">What to wear</p>
-              <h3>Cocktail attire</h3>
+            </div>
+            <div className="deck-schedule-group">
+              <img
+                className="deck-content-bug"
+                src="/images/deck/image18.png"
+                alt=""
+              />
+              <h2>Event Schedule</h2>
+              <p>to be confirmed.</p>
+            </div>
+          </div>
+        </section>
+
+        <div className="deck-content deck-attire-divider" aria-hidden="true" />
+
+        <section className="deck-slide deck-attire" id="attire">
+          <div className="deck-content deck-attire-content">
+            <div className="deck-attire-photos">
+              <img src="/images/deck/image22.jpeg" alt="Cocktail attire inspiration" />
+              <img src="/images/deck/image23.jpeg" alt="Cocktail attire inspiration" style={{ transform: "scaleX(-1)" }} />
+            </div>
+            <div className="deck-attire-copy">
+              <img
+                className="deck-content-bug deck-attire-snail"
+                src="/images/deck/image20.png"
+                alt=""
+              />
+              <h2>Attire</h2>
               <p>
-                We’d love to see you dressed up for the occasion. Wear your best
-                dress!
+                We invite you to celebrate with us in cocktail attire. Please
+                wear your best dress!
               </p>
-            </article>
-          </div>
-          <div className="schedule-note">
-            <Clock3 size={18} />
-            <span>
-              We’re putting the finishing touches on the schedule. More details
-              coming soon.
-            </span>
+            </div>
           </div>
         </section>
 
-        <section className="attire-section section-pad" id="attire">
-          <div className="attire-copy">
-            <p className="eyebrow">
-              <img className="eyebrow-bug" src="/images/moth.png" alt="" />
-              What to wear
-              <img className="eyebrow-bug" src="/images/moth.png" alt="" />
+        <section className="deck-slide deck-travel-guide" id="stay">
+          <header className="deck-guide-intro">
+            <img src="/images/deck/image24.png" alt="" />
+            <h2>Details</h2>
+            <p className="!italic">
+              We know a trip to Denver requires considerable amount of planning,
+              time, and money, especially for those of you coming from out of
+              town. We are incredibly grateful that you could join us to celebrate
+              our love. Below are some recommendations that may help with your
+              travel plans.
             </p>
-            <h1>Attire</h1>
-            <p>
-              We invite you to celebrate with us in cocktail attire. Please
-              wear your best dress, dress up, and feel comfortable for an
-              evening in the garden.
-            </p>
-          </div>
-          <div className="attire-inspiration" aria-label="Cocktail attire inspiration">
-            <img
-              src="/images/attire-inspiration-one.jpg"
-              alt="Cocktail attire inspiration featuring colorful dresses and suits"
-            />
-            <img
-              src="/images/attire-inspiration-two.jpg"
-              alt="More cocktail attire inspiration featuring dresses and suits"
-            />
-          </div>
-        </section>
+          </header>
 
-        <section className="travel-section" id="stay">
-          <div className="travel-copy">
-            <p className="eyebrow light-eyebrow">
-              <span /> Your Denver weekend <span />
-            </p>
-            <h2>
-              Make a<br />
-              <em>getaway</em> of it.
-            </h2>
-            <p>
-              We know a trip to Denver takes time and planning, and we’re so
-              grateful you’re making the journey to celebrate with us. Here are
-              a few places to stay while you’re in town.
-            </p>
-            <a className="text-link text-link-light" href="#explore">
-              See our Denver notes <ArrowDown size={15} />
-            </a>
-          </div>
-          <div className="stay-cards">
-            {stays.map((stay, i) => (
-              <a
-                className="stay-card"
-                href={stay.href}
-                target="_blank"
-                rel="noreferrer"
-                key={stay.name}
-              >
-                <div className="stay-image">
-                  <img src={stay.image} alt={`${stay.name} in Denver`} />
-                  <span className="stay-number">0{i + 1}</span>
-                </div>
-                <div className="stay-info">
-                  <span>{stay.area}</span>
-                  <h3>{stay.name}</h3>
-                  <ArrowRight size={17} />
-                </div>
-              </a>
-            ))}
-          </div>
-          <div className="travel-lace" aria-hidden="true" />
-        </section>
-
-        <section className="explore-section section-pad" id="explore">
-          <div className="section-heading">
-            <p className="eyebrow">
-              <span /> Our little guide <span />
-            </p>
-            <h2>
-              While you’re here
-            </h2>
-            <p>Some of our favorite ways to spend a day in Denver.</p>
-          </div>
-          <div className="places-grid">
-            {places.map((place, i) => (
-              <article
-                className={`place-card place-${i + 1}`}
-                key={place.title}
-              >
-                <div className="place-image">
-                  <img src={place.image} alt={place.title} />
-                  <span className="place-tag">{place.tag}</span>
-                </div>
-                <div className="place-copy">
-                  <span className="place-index">0{i + 1} / DENVER</span>
-                  <h3>{place.title}</h3>
-                  <p>{place.note}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="rsvp-section" id="rsvp">
-          <img className="rsvp-doily" src="/images/doily.png" alt="" />
-          <div className="rsvp-content">
-            <p className="eyebrow light-eyebrow">We saved you a place</p>
-            <h2>
-              Will you join us?
-            </h2>
-            <p>
-              Please let us know by April 30, 2027. We can’t wait to celebrate
-              together.
-            </p>
-            <a
-              className="button-light"
-              href={RSVP_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
-              RSVP here <ArrowRight size={17} />
-            </a>
-            <span className="rsvp-date">
-              JUNE 12 <i>✳</i> DENVER
-            </span>
-          </div>
-        </section>
-
-        <section className="faq-section section-pad" id="faqs">
-          <div className="faq-heading">
-            <p className="eyebrow">
-              <span /> Good to know <span />
-            </p>
-            <h2>
-              A few <em>questions</em>
-            </h2>
-            <p>Something else on your mind? We’d love to hear from you.</p>
-            <a className="text-link" href="mailto:weddinggaffney@gmail.com">
-              Send us a note <ArrowRight size={15} />
-            </a>
-          </div>
-          <div className="faq-list">
-            {faqs.map((faq, i) => (
-              <article
-                className={`faq-item ${openFaq === i ? "faq-open" : ""}`}
-                key={faq.question}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
-                  aria-expanded={openFaq === i}
+          <section className="deck-guide-accommodations">
+            <h2>ACCOMODATIONS</h2>
+            <div className="deck-guide-hotels">
+              {[
+                ["image28.png", "image25.png", "The Ramble Hotel"],
+                ["image29.png", "image26.png", "Populus Denver"],
+                ["image30.png", "image27.png", "The Acoma House"],
+              ].map(([photo, label, name]) => (
+                <a
+                  className="deck-guide-hotel"
+                  href={stays.find((stay) => stay.name === name)?.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={name}
                 >
-                  <span>{faq.question}</span>
-                  <b>{openFaq === i ? "−" : "+"}</b>
-                </button>
-                {openFaq === i && (
-                  <div className="faq-answer">
-                    <p>{faq.answer}</p>
-                    {i === 0 && (
-                      <a href={RSVP_URL} target="_blank" rel="noreferrer">
-                        Open the RSVP form <ArrowRight size={14} />
-                      </a>
-                    )}
+                  <span className="deck-guide-hotel-art">
+                    <span className="deck-guide-hotel-window">
+                      <img
+                        className="deck-guide-hotel-photo"
+                        src={`/images/deck/${photo}`}
+                        alt={name}
+                      />
+                    </span>
+                    <img
+                      className="deck-guide-hotel-frame"
+                      src="/images/deck/image31.png"
+                      alt=""
+                    />
+                  </span>
+                  <img
+                    className="deck-guide-hotel-label"
+                    src={`/images/deck/${label}`}
+                    alt={name}
+                  />
+                </a>
+              ))}
+            </div>
+          </section>
+
+          <section className="deck-guide-things" id="explore">
+            <h2>THINGS TO DO AND SEE</h2>
+            <div className="deck-guide-places">
+              {denverPlaces.map((place) => (
+                <article className="deck-guide-place" key={place.title}>
+                  <div className="deck-guide-place-media cursor-pointer">
+                    <img src={`/images/deck/${place.image}`} alt={place.title} />
+                    <a
+                      className="deck-guide-learn"
+                      href={place.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Learn more
+                    </a>
                   </div>
-                )}
-              </article>
-            ))}
+                  <div className="deck-guide-place-copy">
+                    <h3>{place.title}</h3>
+                    <p>{place.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        </section>
+
+        <section className="deck-slide deck-questions" id="faqs">
+          <h2>QUESTIONS AND ANSWERS</h2>
+          <div className="deck-question-list">
+            <article>
+              <h3>How should I RSVP?</h3>
+              <p>
+                Please RSVP on our online form by April 30th 2027. Kindly RSVP
+                individually through the form below:
+              </p>
+              <a
+                className="deck-question-rsvp"
+                href={RSVP_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                RSVP HERE
+              </a>
+            </article>
+            <article>
+              <h3>Can I bring a plus one?</h3>
+              <p>
+                Due to venue limitations, we are regrettably unable to
+                accommodate additional guests not named in the invitations.
+                Thank you so much for understanding.
+              </p>
+            </article>
+            <article>
+              <h3>have other questions?</h3>
+              <p>
+                Please do not hesitate to contact us at{" "}
+                <a href="mailto:weddinggaffney@gmail.com">
+                  weddinggaffney@gmail.com
+                </a>{" "}
+                for any other questions you may have.
+              </p>
+            </article>
           </div>
         </section>
       </main>
-
-      <footer className="site-footer">
-        <div className="footer-main">
-          <a className="footer-mark" href="#home">
-            F <i>✳</i> T
-          </a>
-          <p>
-            Can’t wait to see you
-            <br />
-            in the garden.
-          </p>
-          <a className="footer-email" href="mailto:weddinggaffney@gmail.com">
-            <Mail size={15} /> weddinggaffney@gmail.com
-          </a>
-          <a className="back-top" href="#home">
-            Back to top ↑
-          </a>
-        </div>
-        <div className="footer-bottom">
-          <span>FARAH & TREVOR · JUNE 12, 2027</span>
-          <span>
-            MADE WITH LOVE IN DENVER <i>✳</i>
-          </span>
-        </div>
-      </footer>
     </>
   );
 }

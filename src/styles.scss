@@ -1,14 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Ballet&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$wedding-burgundy: #3a1a29;
+$wedding-olive: #9e9820;
+$wedding-rust: #8f481d;
+$wedding-cream: #f7f4ec;
+
+@font-face {
+  font-family: "Perandory";
+  src: url("/fonts/perandory-regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   font-family: "DM Sans", Arial, sans-serif;
   color: #30241f;
-  background: #f7f4ec;
+  background: $wedding-cream;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --plum: #351c2a;
   --plum2: #542e3f;
-  --cream: #f7f4ec;
+  --cream: #{$wedding-cream};
   --ivory: #fffdf6;
   --olive: #a3a02b;
   --rust: #865031;
@@ -321,11 +338,13 @@ h1 {
   font-style: normal;
 }
 .welcome-text {
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.9;
   color: #6c625a;
   max-width: 425px;
   margin: 0 0 15px;
+  font-style: italic;
+  font-family: var(--serif);
 }
 .text-link {
   display: inline-flex;
@@ -415,10 +434,11 @@ h1 {
 }
 .date-doily {
   position: absolute;
+  z-index: 0;
   width: 220px;
-  opacity: 0.055;
-  left: -50px;
-  bottom: -100px;
+  opacity: 0.16;
+  left: clamp(18px, 9vw, 130px);
+  top: -105px;
 }
 .day-section {
   background: #f7f4ec;
@@ -879,6 +899,531 @@ h1 {
   padding-left: 8px;
 }
 
+/* Match the countdown band to the RSVP slide. */
+.date-band {
+  background: $wedding-burgundy;
+  color: #f7f1e4;
+  border-block: 1px solid $wedding-burgundy;
+}
+.date-band .eyebrow,
+.date-location,
+.countdown-label {
+  color: #e8d9df;
+}
+.big-date span,
+.countdown-number {
+  color: #e3d18b;
+}
+.countdown {
+  border-color: #b87594;
+}
+.countdown-divider {
+  background: #b87594;
+}
+
+/* Presentation pages: each section keeps the deck's 16:9 composition. */
+.deck-slide {
+  width: 100%;
+  min-height: max(660px, 56.25vw);
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  font-family: var;
+}
+.deck-slide h2,
+.deck-slide h3,
+.deck-slide p {
+  margin: 0;
+}
+.deck-slide h2 {
+  color: $wedding-rust;
+  font: 400 clamp(38px, 5vw, 68px)/1.05 var(--serif);
+}
+.deck-slide p {
+  color: #080808;
+  font: 400 clamp(16px, 1.76vw, 24px)/1.42 var(--serif);
+}
+.deck-rsvp {
+  display: grid;
+  place-items: center;
+  background: $wedding-burgundy;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    width: 100%;
+    height: 46px;
+    background: url("/images/deck/image6.png") left top / auto 46px repeat-x;
+  }
+
+  &::before {
+    top: 0;
+    display: none;
+  }
+
+  &::after {
+    bottom: 0;
+    transform: rotate(180deg);
+  }
+}
+.deck-rsvp-art {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 48.75%;
+  height: auto;
+  object-fit: contain;
+  transform: translateX(-50%);
+}
+.deck-rsvp-link {
+  position: absolute;
+  z-index: 3;
+  top: 43%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #080808;
+  font: 400 clamp(42px, 5.3vw, 73px)/1.05 var(--serif);
+  transform: translate(-50%, -50%);
+}
+.deck-date-venue,
+.deck-attire,
+.deck-questions {
+  background: $wedding-olive;
+}
+.deck-date-venue {
+  display: flex;
+  text-align: center;
+  padding: 3rem;
+}
+.deck-date-venue .deck-content {
+  gap: clamp(1rem, 2.5vh, 2rem);
+}
+.deck-date-group,
+.deck-venue-group,
+.deck-schedule-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.deck-date-venue h2 {
+  margin: 0;
+  font-family: var(--display);
+}
+.deck-date-venue p {
+  width: 100%;
+  max-width: 92%;
+  margin: 0;
+  line-height: 1.45;
+}
+.deck-date-venue sup {
+  font-size: 0.58em;
+  line-height: 0;
+}
+.deck-content-bug {
+  width: clamp(44px, 5.5vw, 76px);
+  height: clamp(36px, 6vh, 58px);
+  display: block;
+  object-fit: contain;
+}
+.deck-attire-photos {
+  height: 100%;
+  width: 57%;
+  display: flex;
+  gap: 0;
+}
+.deck-attire {
+  display: flex;
+  padding: 3rem;
+}
+.deck-content.deck-attire-content {
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding: 0;
+  background: $wedding-cream;
+}
+.deck-attire-photos img {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+.deck-attire-copy {
+  position: absolute;
+  left: 66.2%;
+  right: 7%;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+.deck-attire-copy h2 {
+  margin: 0;
+  font-family: var(--display);
+}
+.deck-attire-copy p {
+  margin: 0;
+  max-width: 100%;
+  text-align: right;
+}
+.deck-details,
+.deck-accommodations,
+.deck-explore {
+  background: #491e0a;
+}
+.deck-details-bug {
+  position: absolute;
+  top: 14%;
+  left: 51%;
+  width: 3%;
+  height: 6%;
+  object-fit: contain;
+}
+.deck-details h2 {
+  position: absolute;
+  top: 26%;
+  left: 6%;
+  width: 88%;
+  text-align: center;
+}
+.deck-details p {
+  position: absolute;
+  top: 50%;
+  left: 7%;
+  width: 86%;
+  color: #fff;
+  text-align: center;
+}
+.deck-accommodations {
+  background: #491e0a;
+}
+.deck-accommodations h2 {
+  position: absolute;
+  top: 7%;
+  left: 20%;
+  width: 60%;
+  text-align: center;
+  font-size: clamp(34px, 4.1vw, 56px);
+}
+.deck-hotels {
+  position: absolute;
+  inset: 21% 7% 8%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3%;
+}
+.deck-hotel {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+.deck-hotel-frame {
+  position: absolute;
+  inset: 0;
+}
+.deck-hotel-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.deck-hotel-photo {
+  position: absolute;
+  width: 89%;
+  height: 74%;
+  left: 5.3%;
+  top: 14.2%;
+  object-fit: cover;
+}
+.deck-hotel-label {
+  position: absolute;
+  width: 92%;
+  height: auto;
+  left: 4%;
+  bottom: 6%;
+}
+.deck-explore {
+  background-color: #4b2209;
+}
+.deck-explore h2 {
+  position: absolute;
+  top: 6%;
+  left: 20%;
+  width: 60%;
+  text-align: center;
+  font-size: clamp(34px, 4.1vw, 56px);
+}
+.deck-explore-card {
+  position: absolute;
+  width: 65%;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  color: white;
+}
+.deck-explore-card > img {
+  width: 34%;
+  aspect-ratio: 1.35;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.deck-explore-card h3 {
+  color: $wedding-olive;
+  font: 500 clamp(17px, 2vw, 27px)/1.15 var(--serif);
+  margin-bottom: 2.5%;
+}
+.deck-explore-card p {
+  color: white;
+  font-size: clamp(12px, 1.34vw, 18px);
+  line-height: 1.28;
+}
+.deck-gardens {
+  top: 26%;
+  left: 32%;
+}
+.deck-museum {
+  top: 58%;
+  left: 17%;
+}
+.deck-learn {
+  position: absolute;
+  width: 7.2%;
+  height: auto;
+}
+.deck-learn-one { left: 2.5%; top: 57%; }
+.deck-learn-one-end { right: 2.5%; bottom: 3%; }
+.deck-explore-two .deck-bookstore {
+  top: 17%;
+  left: 39%;
+}
+.deck-explore-two .deck-bookstore > img {
+  width: 32%;
+}
+.deck-explore-two .deck-artmuseum {
+  top: 61%;
+  left: 9%;
+  width: 61%;
+}
+.deck-explore-two .deck-artmuseum > img {
+  width: 38%;
+}
+.deck-learn-two { left: 66%; top: 48%; }
+.deck-learn-two-end { left: 67%; top: 50%; }
+.deck-questions {
+  background: $wedding-olive;
+  padding: 0 6%;
+}
+.deck-questions > h2 {
+  position: absolute;
+  top: 16.3%;
+  left: 6%;
+  width: 88%;
+  text-align: center;
+  font-size: clamp(36px, 4.5vw, 62px);
+  margin: 0 0 5%;
+}
+.deck-question-list {
+  position: absolute;
+  top: 33%;
+  left: 12%;
+  right: 12%;
+  display: flex;
+  flex-direction: column;
+  width: 88%;
+  gap: 2rem;
+}
+.deck-question-list article h3 {
+  color: $wedding-olive;
+  font: 400 clamp(24Px, 2vw, 36px)/1.15 "Perandory", serif;
+}
+
+.deck-question-list article p {
+  font-size: clamp(18px, 1.2vw, 24px);
+  line-height: 1.45;
+  font-style: italic;
+}
+.deck-question-rsvp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(74%, 230px);
+  min-height: 3.25rem;
+  margin: 1rem 0 0 0;
+  border-radius: 999px;
+  background: #86184d;
+  color: #fffdf5;
+  font: 400 1.35rem/1 "Perandory", serif;
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+.deck-question-rsvp:hover,
+.deck-question-rsvp:focus-visible {
+  background: $wedding-burgundy;
+  transform: scale(1.04);
+}
+.deck-question-grid article p a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .deck-slide {
+    min-height: 0;
+    aspect-ratio: auto;
+    height: auto;
+    padding: 76px 24px;
+  }
+  .deck-rsvp { min-height: 78svh; }
+  .deck-rsvp-art { width: 82%; left: 50%; top: 9%; }
+  .deck-date-venue { min-height: 620px; padding: 2rem; }
+  .deck-date-venue .deck-content {
+    min-height: 0;
+    margin: 0;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  .deck-date-venue h2 { margin: 0; }
+  .deck-date-venue p { max-width: 100%; margin: 0; }
+  .deck-content-bug { width: 44px; height: 45px; }
+  .deck-attire { min-height: 0; padding: 2rem; }
+  .deck-content.deck-attire-content { padding: 0 0 2rem; }
+  .deck-attire-photos { position: relative; inset: auto; width: 100%; height: 58svh; }
+  .deck-attire-copy { position: relative; inset: auto; padding: 32px 26px 0; }
+  .deck-attire-snail { width: 44px; height: 45px; }
+  .deck-details { min-height: 620px; }
+  .deck-details-bug { width: 32px; height: 40px; left: calc(50% - 16px); top: 70px; }
+  .deck-details h2 { top: 23%; left: 6%; }
+  .deck-details p { top: 43%; left: 8%; width: 84%; }
+  .deck-accommodations { min-height: 1000px; padding: 75px 25px; }
+  .deck-accommodations h2 { top: 5%; left: 6%; width: 88%; }
+  .deck-hotels { inset: 15% 13% 5%; display: flex; flex-direction: column; gap: 16px; }
+  .deck-hotel { min-height: 0; flex: 1; }
+  .deck-hotel-photo { height: 70%; }
+  .deck-hotel-label { width: 76%; left: 12%; bottom: 3%; }
+  .deck-explore { min-height: 920px; padding: 90px 24px; }
+  .deck-explore h2 { top: 4%; left: 5%; width: 90%; }
+  .deck-explore-card,
+  .deck-explore-two .deck-bookstore,
+  .deck-explore-two .deck-artmuseum {
+    position: absolute;
+    left: 7%;
+    width: 86%;
+    display: block;
+  }
+  .deck-gardens { top: 17%; }
+  .deck-museum { top: 55%; }
+  .deck-explore-card > img,
+  .deck-explore-two .deck-bookstore > img,
+  .deck-explore-two .deck-artmuseum > img { width: 100%; aspect-ratio: 1.8; margin-bottom: 12px; }
+  .deck-explore-card h3 { margin-bottom: 7px; }
+  .deck-explore-card p { font-size: 14px; }
+  .deck-learn-one { width: 76px; left: auto; right: 7%; top: 43%; }
+  .deck-learn-one-end { display: none; }
+  .deck-explore-two { min-height: 850px; }
+  .deck-explore-two .deck-bookstore { top: 10%; }
+  .deck-explore-two .deck-artmuseum { top: 53%; }
+  .deck-learn-two { width: 76px; top: 42%; left: 10%; }
+  .deck-learn-two-end { display: none; }
+  .deck-questions { min-height: 920px; padding: 74px 27px; }
+  .deck-questions > h2 { position: static; width: auto; margin-bottom: 42px; }
+  .deck-question-grid { position: static; grid-template-columns: 1fr; gap: 34px; }
+  .deck-question-grid article h3 { margin-bottom: 12px; font-size: 22px; }
+  .deck-question-grid article p { font-size: 15px; }
+  .deck-question-rsvp { width: min(74%, 230px); margin: 14px auto 0; }
+}
+
+.deck-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: #fffdf5;
+}
+.deck-content.deck-attire-divider {
+  flex: none;
+  width: 100%;
+  height: 38px;
+  padding: 0;
+  background: url("/images/deck/image6.png") center / auto 38px repeat-x,
+    $wedding-olive;
+}
+
+.deck-details,
+.deck-accommodations,
+.deck-explore,
+.deck-questions {
+  background: $wedding-cream;
+  color: #30241f;
+}
+.deck-details {
+  box-shadow: inset 0 0 0 clamp(1.25rem, 3vw, 3rem) #491e0a;
+}
+.deck-questions {
+  box-shadow: inset 0 0 0 clamp(1.25rem, 3vw, 3rem) $wedding-olive;
+}
+.deck-details::before,
+.deck-details::after,
+.deck-accommodations::before,
+.deck-accommodations::after,
+.deck-explore::before,
+.deck-explore::after,
+.deck-questions::before,
+.deck-questions::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  width: 100%;
+  height: 34px;
+  opacity: 0.24;
+  pointer-events: none;
+  background: url("/images/deck/image6.png") left center / auto 34px repeat-x;
+}
+.deck-details::before,
+.deck-accommodations::before,
+.deck-explore::before,
+.deck-questions::before {
+  top: 0;
+}
+.deck-details::after,
+.deck-accommodations::after,
+.deck-explore::after,
+.deck-questions::after {
+  bottom: 0;
+  transform: rotate(180deg);
+}
+.deck-details p,
+.deck-explore-card p {
+  color: #30241f;
+}
+.deck-details h2,
+.deck-accommodations h2,
+.deck-explore h2,
+.deck-questions h2 {
+  color: $wedding-rust;
+}
+
+@media (max-width: 700px) {
+  .deck-content.deck-attire-divider {
+    height: 24px;
+    background: url("/images/deck/image6.png") center / auto 24px repeat-x,
+      $wedding-olive;
+  }
+}
+
 @media (max-width: 900px) {
   .welcome {
     gap: 45px;
@@ -911,6 +1456,236 @@ h1 {
   }
   .faq-heading .text-link {
     margin-top: 5px;
+  }
+}
+
+.deck-travel-guide {
+  min-height: 0;
+  aspect-ratio: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  padding: clamp(4rem, 7vw, 6rem) max(6vw, 24px);
+  background: $wedding-cream;
+  color: #30241f;
+  box-shadow: inset 0 0 0 clamp(1.25rem, 3vw, 3rem) #491e0a;
+}
+.deck-travel-guide::before,
+.deck-travel-guide::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  width: 100%;
+  height: 34px;
+  opacity: 0.24;
+  pointer-events: none;
+  background: url("/images/deck/image6.png") left center / auto 34px repeat-x;
+}
+.deck-travel-guide::before { top: 0; }
+.deck-travel-guide::after { bottom: 0; transform: rotate(180deg); }
+.deck-guide-intro,
+.deck-guide-accommodations,
+.deck-guide-things {
+  width: min(100%, 1240px);
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+.deck-guide-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.deck-guide-intro > img {
+  width: clamp(38px, 4vw, 58px);
+  height: clamp(42px, 5vw, 68px);
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
+.deck-guide-intro h2,
+.deck-guide-accommodations > h2,
+.deck-guide-things > h2 {
+  color: $wedding-rust;
+  font: 400 clamp(36px, 4.5vw, 58px)/1.08 var(--display);
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.deck-guide-intro p {
+  max-width: 850px;
+  line-height: 1.6;
+}
+.deck-guide-accommodations > h2,
+.deck-guide-things > h2 {
+  font-family: var(--serif);
+}
+.deck-guide-hotels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.75rem);
+}
+.deck-guide-hotel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+.deck-guide-hotel-art {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 0.86;
+}
+.deck-guide-hotel-window,
+.deck-guide-hotel-frame {
+  grid-area: 1 / 1;
+}
+.deck-guide-hotel-window {
+  display: block;
+  width: 68%;
+  height: 82%;
+  overflow: hidden;
+  border-radius: 50%;
+  z-index: 0;
+}
+.deck-guide-hotel-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+.deck-guide-hotel-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 1;
+  pointer-events: none;
+}
+.deck-guide-hotel-label {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+  margin: 0 auto;
+  transform-origin: center;
+  transition: transform 250ms ease;
+}
+.deck-guide-hotel:hover .deck-guide-hotel-photo,
+.deck-guide-hotel:focus-visible .deck-guide-hotel-photo {
+  transform: scale(1.12);
+}
+.deck-guide-hotel:hover .deck-guide-hotel-label,
+.deck-guide-hotel:focus-visible .deck-guide-hotel-label {
+  transform: scale(1.05);
+}
+.deck-guide-places {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+.deck-guide-place {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.85fr) 1.15fr;
+  align-items: center;
+}
+.deck-guide-place:nth-child(even) .deck-guide-place-media {
+  grid-column: 2;
+  grid-row: 1;
+}
+.deck-guide-place:nth-child(even) .deck-guide-place-copy {
+  grid-column: 1;
+  grid-row: 1;
+}
+.deck-guide-place:nth-child(odd) .deck-guide-place-media { justify-self: start; }
+.deck-guide-place:nth-child(even) .deck-guide-place-media { justify-self: end; }
+.deck-guide-place-media {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  width: 100%;
+  max-width: clamp(180px, 20vw, 260px);
+  aspect-ratio: 0.82;
+  justify-self: center;
+  overflow: hidden;
+  background: #f2f1eb;
+  padding: 1rem 1rem 3rem;
+  box-shadow: -1px 1px 0 1px #3c3333, inset -1px 1px 0 1px #fff;
+}
+.deck-guide-place-media > img {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+.deck-guide-learn {
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+  padding: 0.7rem 1.1rem;
+  background: $wedding-olive;
+  color: #fffdf5;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.deck-guide-place-media:hover > img,
+.deck-guide-place-media:focus-within > img {
+  transform: scale(1.06);
+}
+.deck-guide-place-media:hover .deck-guide-learn,
+.deck-guide-place-media:focus-within .deck-guide-learn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.deck-guide-place h3 {
+  color: $wedding-olive;
+  font: 500 clamp(18px, 1.8vw, 24px)/1.2 var(--serif);
+  margin: 0 0 0.65rem;
+}
+.deck-guide-place p {
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.5;
+  margin: 0;
+  font-style: italic;
+}
+
+.deck-guide-accommodations > h2,
+.deck-guide-things > h2,
+.deck-questions > h2 {
+  font-family: "Perandory", serif;
+  font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .deck-travel-guide {
+    gap: 3rem;
+    padding: 4rem 2rem;
+  }
+  .deck-guide-hotels { grid-template-columns: 1fr; gap: 1.5rem; }
+  .deck-guide-hotel { width: min(100%, 340px); margin-inline: auto; }
+  .deck-guide-places { gap: 1rem; }
+  .deck-guide-place {
+    grid-template-columns: minmax(120px, 0.95fr) 1.05fr;
+    gap: 0.85rem;
+    padding: 0.85rem;
+  }
+  .deck-guide-place-media {
+    max-width: clamp(120px, 34vw, 165px);
+    padding: 0.65rem 0.65rem 2rem;
   }
 }
 @media (max-width: 640px) {
@@ -1038,8 +1813,8 @@ h1 {
   }
   .date-doily {
     width: 150px;
-    left: -58px;
-    bottom: -80px;
+    left: 15px;
+    top: -58px;
   }
   .section-heading {
     margin-bottom: 34px;

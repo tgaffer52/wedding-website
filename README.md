@@ -32,8 +32,8 @@ src/          React application and styles
 index.html    Vite page entry point
 ```
 
-Wedding details and page content are in `src/App.jsx`; visual styles are in `src/styles.css`. Static media lives in `public/` and is referenced from the app by paths such as `/images/couple.jpg`.
+Wedding details and page content are in `src/App.jsx`; visual styles are in `src/styles.scss`. The project uses Sass for stylesheet authoring and Tailwind CSS utilities for component-level styling. Tailwind scans `index.html` and `src/**/*.{js,ts,jsx,tsx}`; its preflight reset is disabled to preserve the site's existing styles. Static media lives in `public/` and is referenced from the app by paths such as `/images/couple.jpg`.
 
 ## Updating the site
 
-Edit the content in `src/App.jsx` and styles in `src/styles.css`. The RSVP form URL is set by the `RSVP_URL` constant near the top of `src/App.jsx`. Keep referenced images and videos in `public/` so Vite can serve them at the existing paths.
+Edit the content in `src/App.jsx` and styles in `src/styles.scss`. The RSVP form URL is set by the `RSVP_URL` constant near the top of `src/App.jsx`. Keep referenced images and videos in `public/` so Vite can serve them at the existing paths.
