@@ -901,9 +901,9 @@ h1 {
 
 /* Match the countdown band to the RSVP slide. */
 .date-band {
-  background: $wedding-burgundy;
+  background: #78844a;
   color: #f7f1e4;
-  border-block: 1px solid $wedding-burgundy;
+  border-block: 1px solid #78844a;
 }
 .date-band .eyebrow,
 .date-location,
@@ -946,7 +946,7 @@ h1 {
 .deck-rsvp {
   display: grid;
   place-items: center;
-  background: $wedding-burgundy;
+  background: #78844a;
 
   &::before,
   &::after {
@@ -1688,6 +1688,95 @@ h1 {
     padding: 0.65rem 0.65rem 2rem;
   }
 }
+
+/* Cream pages with side rails grouped by section. */
+@mixin deck-side-rail($color) {
+  background-color: $wedding-cream;
+  background-image: linear-gradient(
+    to right,
+    $color 0,
+    $color var(--deck-rail-width),
+    transparent var(--deck-rail-width),
+    transparent calc(100% - var(--deck-rail-width)),
+    $color calc(100% - var(--deck-rail-width)),
+    $color 100%
+  );
+  box-shadow: none;
+}
+.deck-pages {
+  --deck-rail-width: clamp(1rem, 3vw, 3rem);
+}
+.deck-pages > .date-band,
+.deck-pages > .deck-rsvp,
+.deck-pages > .deck-date-venue {
+  @include deck-side-rail(#78844a);
+}
+.deck-pages > .deck-attire {
+  @include deck-side-rail(#b77b4d);
+}
+.deck-pages > .deck-travel-guide {
+  @include deck-side-rail(#705b80);
+}
+.deck-pages > .deck-questions {
+  @include deck-side-rail(#263c5b);
+}
+.deck-pages > .date-band {
+  background-color: #78844a;
+  color: #f7f1e4;
+  border: 0;
+}
+.deck-pages > .date-band .eyebrow,
+.deck-pages > .date-band .date-location,
+.deck-pages > .date-band .countdown-label {
+  color: #e8d9df;
+}
+.deck-pages > .date-band .big-date span,
+.deck-pages > .date-band .countdown-number {
+  color: #e3d18b;
+}
+.deck-pages > .date-band .countdown {
+  border-color: #b87594;
+}
+.deck-pages > .date-band .countdown-divider {
+  background: #b87594;
+}
+.deck-pages > .deck-rsvp {
+  background-color: #78844a;
+}
+.deck-pages .deck-content,
+.deck-pages .deck-question-grid article,
+.deck-pages .deck-guide-place-media {
+  background-color: $wedding-cream;
+}
+.deck-pages > .deck-content.deck-attire-divider {
+  background-color: $wedding-cream;
+  background-image:
+    url("/images/deck/image6.png"),
+    linear-gradient(
+      to right,
+      #b77b4d 0,
+      #b77b4d var(--deck-rail-width),
+      transparent var(--deck-rail-width),
+      transparent calc(100% - var(--deck-rail-width)),
+      #b77b4d calc(100% - var(--deck-rail-width)),
+      #b77b4d 100%
+    );
+  background-position: center, center;
+  background-size: auto 38px, 100% 100%;
+  background-repeat: repeat-x, no-repeat;
+}
+.deck-pages > .deck-slide::before,
+.deck-pages > .deck-slide::after,
+.deck-pages > .deck-travel-guide::before,
+.deck-pages > .deck-travel-guide::after {
+  opacity: 0.12;
+}
+
+@media (max-width: 700px) {
+  .deck-pages > .deck-content.deck-attire-divider {
+    background-size: auto 24px, 100% 100%;
+  }
+}
 @media (max-width: 640px) {
   html {
     scroll-padding-top: 62px;
@@ -2033,18 +2122,16 @@ h3,
   font-family: var(--serif);
 }
 
-/* Give the welcome section a full-bleed starry night backdrop. */
+/* Keep the welcome message on the garden green. */
 .welcome {
   max-width: none;
-  background:
-    linear-gradient(rgba(13, 19, 38, 0.78), rgba(13, 19, 38, 0.82)),
-    url("/images/night-garden.png") center 48% / cover;
+  background: $wedding-olive;
 }
 .welcome-copy h2 {
   color: #fffdf6;
 }
 .welcome-text {
-  color: #e5e3e2;
+  color: $wedding-cream;
 }
 .welcome .eyebrow {
   color: #e3d8b6;
@@ -2147,4 +2234,59 @@ h3,
     width: 100%;
     justify-self: center;
   }
+}
+
+.deck-pages > .deck-questions {
+  display: block;
+  min-height: 0;
+  height: auto;
+  aspect-ratio: auto;
+  padding: clamp(2rem, 5vw, 4rem)
+    calc(var(--deck-rail-width) + clamp(1rem, 3vw, 2rem));
+  background-color: #263c5b;
+  background-image:
+    linear-gradient(rgba(25, 29, 51, 0.28), rgba(30, 24, 46, 0.42)),
+    url("/images/night-garden.png");
+  background-position: center, center;
+  background-size: cover, cover;
+  background-repeat: no-repeat;
+  box-shadow: none;
+}
+.deck-question-content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: $wedding-cream;
+}
+.deck-question-content > h2 {
+  position: static;
+  width: auto;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  color: $wedding-rust;
+  font: 400 clamp(32px, 4.5vw, 56px)/1.1 "Perandory", serif;
+  text-align: center;
+}
+.deck-question-content .deck-question-list {
+  position: static;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.deck-question-content .deck-question-list article h3 {
+  margin: 0 0 0.5rem;
+  color: $wedding-olive;
+}
+.deck-question-content .deck-question-list article p {
+  margin: 0;
+  color: #30241f;
+}
+
+@media (max-width: 700px) {
+  .deck-pages > .deck-questions {
+    padding: 2rem calc(var(--deck-rail-width) + 1rem);
+  }
+  .deck-question-content { padding: 1.25rem; }
 }

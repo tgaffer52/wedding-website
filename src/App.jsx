@@ -225,6 +225,7 @@ function App() {
           </div>
         </section>
 
+        <div className="deck-pages">
         <section className="date-band" aria-label="Wedding date">
           <div className="date-band-content">
             <p className="eyebrow light-eyebrow">Save the date</p>
@@ -394,43 +395,46 @@ function App() {
         </section>
 
         <section className="deck-slide deck-questions" id="faqs">
-          <h2>QUESTIONS AND ANSWERS</h2>
-          <div className="deck-question-list">
-            <article>
-              <h3>How should I RSVP?</h3>
-              <p>
-                Please RSVP on our online form by April 30th 2027. Kindly RSVP
-                individually through the form below:
-              </p>
-              <a
-                className="deck-question-rsvp"
-                href={RSVP_URL}
-                target="_blank"
-                rel="noreferrer"
-              >
-                RSVP HERE
-              </a>
-            </article>
-            <article>
-              <h3>Can I bring a plus one?</h3>
-              <p>
-                Due to venue limitations, we are regrettably unable to
-                accommodate additional guests not named in the invitations.
-                Thank you so much for understanding.
-              </p>
-            </article>
-            <article>
-              <h3>have other questions?</h3>
-              <p>
-                Please do not hesitate to contact us at{" "}
-                <a href="mailto:weddinggaffney@gmail.com">
-                  weddinggaffney@gmail.com
-                </a>{" "}
-                for any other questions you may have.
-              </p>
-            </article>
+          <div className="deck-question-content">
+            <h2>QUESTIONS AND ANSWERS</h2>
+            <div className="deck-question-list">
+              <article>
+                <h3>How should I RSVP?</h3>
+                <p>
+                  Please RSVP on our online form by April 30th 2027. Kindly RSVP
+                  individually through the form below:
+                </p>
+                <a
+                  className="deck-question-rsvp"
+                  href={RSVP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  RSVP HERE
+                </a>
+              </article>
+              <article>
+                <h3>Can I bring a plus one?</h3>
+                <p>
+                  Due to venue limitations, we are regrettably unable to
+                  accommodate additional guests not named in the invitations.
+                  Thank you so much for understanding.
+                </p>
+              </article>
+              <article>
+                <h3>have other questions?</h3>
+                <p>
+                  Please do not hesitate to contact us at{" "}
+                  <a href="mailto:weddinggaffney@gmail.com">
+                    weddinggaffney@gmail.com
+                  </a>{" "}
+                  for any other questions you may have.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
+        </div>
       </main>
     </>
   );
